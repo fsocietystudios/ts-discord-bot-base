@@ -1,7 +1,7 @@
 import type { Interaction } from "discord.js";
-import type ExtendedClient from "../interfaces/ExtendedClient";
+import type { ExtendedClient } from "../interfaces/interfaces";
 
-async function interactionCreate (client: ExtendedClient, interaction: any) {
+async function interactionCreate (client: ExtendedClient, interaction: Interaction) {
     if (interaction.isCommand()) {
         const cmd = client.commands.get(interaction.commandName);
         if (!cmd) return interaction.followUp({ content: "An error has occured!" });
@@ -12,18 +12,15 @@ async function interactionCreate (client: ExtendedClient, interaction: any) {
             if (option.type === "SUB_COMMAND") {
                 if (option.name) args.push(option.name);
 
-                option.options?.forEach((x: any) => { if (x.value) args.push(x.value); });
+                option.options?.forEach((x) => { if (x.value) args.push(x.value); });
             } else if (option.value) args.push(option.value);
         }
 
-        interaction.guildMember = interaction.guild?.members.cache.get(interaction.user.id);
+        const guildMember = interaction.guild?.members.cache.get(interaction.user.id);
+        const interactionWithGuildMember = Object.assign(interaction, { guildMember });
 
-        cmd.run(client, interaction, args);
+        cmd.run(client, interactionWithGuildMember, args);
     };
-
-    if (interaction.isButton()) {
-        console.log(21)
-    }
 };
 
 export default interactionCreate;
