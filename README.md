@@ -53,8 +53,7 @@ To run this project, you will need to add the following environment variables to
 
 Here's an example of creating a new slash command, (Under `commands` folder).
 ```typescript
-import type { CommandInteraction } from "discord.js";
-import type ExtendedClient from "../interfaces/ExtendedClient";
+import type { ExtendedClient, CommandInteractionWithGuildMember } from "../interfaces/Interfaces";
 
 export default {
     name: "test",
@@ -62,7 +61,7 @@ export default {
     type: 'CHAT_INPUT',
     options: [],
 
-    run: async (client: ExtendedClient, interaction: CommandInteraction, args: any) => {
+    run: async (client: ExtendedClient, interaction: CommandInteractionWithGuildMember, args: any) => {
         return await interaction.reply({ content: "Hello World!", ephemeral: true }).catch(e => console.log(e));
     }
 };
@@ -81,7 +80,7 @@ In case you'll want to add args to the command, simply just specify those inside
 Here's an example of creating a new event callback, (Under `events` folder).\
 This callback uses the same params as the event gives.
 ```typescript
-import type ExtendedClient from "../interfaces/ExtendedClient";
+import type { ExtendedClient } from "../interfaces/ExtendedClient";
 
 async function ready(client: ExtendedClient) {
     console.log(`Logged in as: ${client?.user?.tag}`);
