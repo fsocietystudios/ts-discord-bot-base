@@ -3,7 +3,7 @@ import { join } from "path";
 import * as url from "url";
 import fileUrl from "file-url";
 
-import type ExtendedClient from "../interfaces/ExtendedClient";
+import type { ExtendedClient } from "../interfaces/interfaces";
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const commandsFilePath = join(__dirname, "..", "commands");
