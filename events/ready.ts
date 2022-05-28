@@ -1,4 +1,4 @@
-import type ExtendedClient from "../interfaces/ExtendedClient";
+import type { ExtendedClient } from "../interfaces/ExtendedClient";
 
 async function ready(client: ExtendedClient) {
     console.log(`Logged in as: ${client?.user?.tag}`);
