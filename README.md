@@ -2,9 +2,9 @@
 ![Logo](https://www.spottocamp.com/img/powered/typescript.png)
 
 
-# Discord bot code base - Writte in TypeScript
+# Discord bot base - Writte in TypeScript
 
-A Discord bot code base written in TypeScript.
+A Discord bot base written in TypeScript.
 
 
 ## Features
